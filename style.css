@@ -4,7 +4,6 @@ h2,
 h3,
 p,
 ul,
-ol,
 li,
 figure,
 table,
@@ -76,7 +75,7 @@ ul {
 /* Header */
 
 header {
-  background-color: #007bff;
+  background-color: #cc0000; /* Vermelho dos X-men */
   color: #fff;
   padding: 20px;
   display: flex;
@@ -105,7 +104,7 @@ nav ul {
   gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
-  background-color: #343a40;
+  background-color: #333366; /* Azul dos Avengers */
   padding: 10px;
   margin-bottom: 20px;
 }
@@ -125,7 +124,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #ffc107;
+  color: #ffcc00; /* Amarelo dos destaques da saga */
 }
 
 /* Seções */
@@ -199,14 +198,14 @@ nav a:hover {
 }
 
 article {
-  background-color: #ffc107;
+  background-color: #333366; /* Azul dos Avengers */
   color: #fff;
 }
 
 /* Links */
 
 a[target='_blank'] {
-  color: #4592c4;
+  color: #cc0000; /* Vermelho dos X-men */
   font-weight: bold;
   transition: opacity 0.3s ease-in-out;
 }
@@ -218,7 +217,7 @@ a[target='_blank']:hover {
 /* Footer */
 
 footer {
-  background-color: #343a40;
+  background-color: #333366; /* Azul dos Avengers */
   color: #fff;
   padding: 20px;
   display: flex;
