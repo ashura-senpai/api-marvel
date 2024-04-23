@@ -26,16 +26,7 @@ body {
 }
 
 main {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin: 0 20px;
-}
-
-@media (max-width: 768px) {
-  main {
-    grid-template-columns: 1fr;
-  }
+  margin: 0 400px;
 }
 
 main > section {
@@ -154,38 +145,21 @@ nav a:hover {
   transform: scale(1.1);
 }
 
+#curiosidades li::marker {
+  content: '🔎';
+}
+
 #artigo-saga li::marker {
   content: '📍';
 }
 
-#artigo-saga ul {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-#curiosidades li::marker {
-  content: '🔍';
-}
-
-#curiosidades ul {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
+#artigo-saga ul,
+#curiosidades ul,
 #personagens ul {
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  list-style: none;
-}
-
-@media (max-width: 768px) {
-  #personagens ul {
-    flex-direction: column;
-    align-items: center;
-  }
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
 }
 
 #personagens img {
