@@ -154,10 +154,6 @@ nav a:hover {
   transform: scale(1.1);
 }
 
-#info-saga img:nth-of-type(2) {
-  padding: 35px;
-}
-
 #artigo-saga li::marker {
   content: '📍';
 }

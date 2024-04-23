@@ -77,12 +77,18 @@ function fetchCharacterData() {
       footer.appendChild(paragraph);
     }
   }
+
+  function openInNewTab(url) {
+    const win = window.open(url, '_blank');
+    win.focus();
+  }
   
   function main() {
     updatePageTitleAndHeader();
     fetchCharacterData();
     updateVisitCounter();
     updateFooter();
+    openInNewTab();
   }
   
   window.onload = main;  
