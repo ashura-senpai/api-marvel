@@ -133,12 +133,15 @@ nav a:hover {
   width: 150px;
   height: 150px;
   align-self: center;
+  border-radius: 20%;
 }
 
 #info-saga div {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #info-saga img,
@@ -153,6 +156,16 @@ nav a:hover {
 
 #info-saga img:nth-of-type(2) {
   padding: 35px;
+}
+
+#artigo-saga li::marker {
+  content: '📍';
+}
+
+#artigo-saga ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 #curiosidades li::marker {
