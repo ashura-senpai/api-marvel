@@ -17,7 +17,7 @@ function updatePageTitleAndHeader() {
 function fetchCharacterData() {
   const personagem = getPersonagemFromURL();
   if (personagem) {
-      const apiUrl = `http://gateway.marvel.com/v1/public/comics/82965/characters?ts=2&apikey=f03686592cac4cc4a8afffde669ee4d2&hash=26dbda14d8a4379d0dd42bdc17cf1c65`;
+      const apiUrl = `http://gateway.marvel.com/v1/public/series/15305/characters?&ts=2&apikey=f03686592cac4cc4a8afffde669ee4d2&hash=26dbda14d8a4379d0dd42bdc17cf1c65`;
       fetch(apiUrl)
           .then(response => response.json())
           .then(data => {
