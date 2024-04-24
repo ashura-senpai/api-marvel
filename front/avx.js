@@ -6,41 +6,40 @@ function getPersonagemFromURL() {
 function updatePageTitleAndHeader() {
   const personagem = getPersonagemFromURL();
   if (personagem) {
-      document.title = `Página do ${personagem}`;
-      const h3Title = document.querySelector('#htres');
-      if (h3Title) {
-          h3Title.textContent = `Informações sobre ${personagem}`;
-      }
+    document.title = `Página do ${personagem}`;
+    const h3Title = document.querySelector('#htres');
+    if (h3Title) {
+      h3Title.textContent = `Informações sobre ${personagem}`;
+    }
   }
 }
 
 function fetchCharacterData() {
   const personagem = getPersonagemFromURL();
   if (personagem) {
-      const apiUrl = `http://gateway.marvel.com/v1/public/characters/${personagem}?ts=2&apikey=f03686592cac4cc4a8afffde669ee4d2&hash=26dbda14d8a4379d0dd42bdc17cf1c65`;
-      fetch(apiUrl)
-          .then(response => response.json())
-          .then(data => {
-              const character = data.data.results[0];
-              const characterImage = character.thumbnail.path + '.' + character.thumbnail.extension;
+    const apiUrl = `http://gateway.marvel.com/v1/public/characters/${personagem}?ts=2&apikey=f03686592cac4cc4a8afffde669ee4d2&hash=26dbda14d8a4379d0dd42bdc17cf1c65`;
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const character = data.data.results[0];
+        const characterImage = character.thumbnail.path + '.' + character.thumbnail.extension;
 
-              const characterImg = document.createElement('img');
-              characterImg.src = characterImage;
-              characterImg.alt = personagem;
-              characterImg.setAttribute('aria-label', `Imagem de ${personagem}`);
+        const characterImg = document.createElement('img');
+        characterImg.src = characterImage;
+        characterImg.alt = personagem;
+        characterImg.setAttribute('aria-label', `Imagem de ${personagem}`);
 
-              const characterImageSection = document.querySelector('#character-image');
-              if (characterImageSection) {
-                  characterImageSection.appendChild(characterImg);
-              }
-          })
-          .catch(error => console.error('Erro ao obter imagem do personagem:', error));
+        const characterImageSection = document.querySelector('#character-image');
+        if (characterImageSection) {
+          characterImageSection.appendChild(characterImg);
+        }
+      })
+      .catch(error => console.error('Erro ao obter imagem do personagem:', error));
   }
 }
-  
+
 function updateVisitCounter() {
   let visitData = localStorage.getItem('visitData');
-
   if (!visitData) {
     visitData = { count: 0, lastVisit: '' };
   } else {
@@ -49,7 +48,7 @@ function updateVisitCounter() {
 
   visitData.count++;
   const currentDate = new Date();
-  
+
   const dateFormatter = new Intl.DateTimeFormat('pt-BR', {
     day: '2-digit',
     month: '2-digit',
@@ -57,7 +56,7 @@ function updateVisitCounter() {
     hour: '2-digit',
     minute: '2-digit',
   });
-  
+
   const formattedDate = dateFormatter.format(currentDate);
   visitData.lastVisit = formattedDate;
   localStorage.setItem('visitData', JSON.stringify(visitData));
