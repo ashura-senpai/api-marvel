@@ -17,7 +17,7 @@ function updatePageTitleAndHeader() {
 function fetchCharacterData() {
   const personagem = getPersonagemFromURL();
   if (personagem) {
-      const apiUrl = `http://gateway.marvel.com/v1/public/series/15305/characters?&ts=2&apikey=f03686592cac4cc4a8afffde669ee4d2&hash=26dbda14d8a4379d0dd42bdc17cf1c65`;
+      const apiUrl = `http://gateway.marvel.com/v1/public/characters/${personagem}?ts=2&apikey=f03686592cac4cc4a8afffde669ee4d2&hash=26dbda14d8a4379d0dd42bdc17cf1c65`;
       fetch(apiUrl)
           .then(response => response.json())
           .then(data => {
@@ -38,57 +38,55 @@ function fetchCharacterData() {
   }
 }
   
-  function updateVisitCounter() {
-    let visitData = localStorage.getItem('visitData');
-  
-    if (!visitData) {
-      visitData = { count: 0, lastVisit: '' };
-    } else {
-      visitData = JSON.parse(visitData);
-    }
-  
-    visitData.count++;
-    const currentDate = new Date();
-    
-    const dateFormatter = new Intl.DateTimeFormat('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-    
-    const formattedDate = dateFormatter.format(currentDate);
-    visitData.lastVisit = formattedDate;
-    localStorage.setItem('visitData', JSON.stringify(visitData));
+function updateVisitCounter() {
+  let visitData = localStorage.getItem('visitData');
 
+  if (!visitData) {
+    visitData = { count: 0, lastVisit: '' };
+  } else {
+    visitData = JSON.parse(visitData);
   }
 
-  function updateFooter() {
-    const visitData = JSON.parse(localStorage.getItem('visitData'));
+  visitData.count++;
+  const currentDate = new Date();
   
-    if (visitData) {
-      const footerText = `Esta página foi visitada ${visitData.count} vezes. A última visita foi: ${visitData.lastVisit}`;
+  const dateFormatter = new Intl.DateTimeFormat('pt-BR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
   
-      const paragraph = document.createElement('p');
-      paragraph.textContent = footerText;
-  
-      const footer = document.querySelector('footer');
-      footer.appendChild(paragraph);
-    }
-  }
+  const formattedDate = dateFormatter.format(currentDate);
+  visitData.lastVisit = formattedDate;
+  localStorage.setItem('visitData', JSON.stringify(visitData));
+}
 
-  function openInNewTab(url) {
-    const win = window.open(url, '_blank');
-    win.focus();
+function updateFooter() {
+  const visitData = JSON.parse(localStorage.getItem('visitData'));
+
+  if (visitData) {
+    const footerText = `Esta página foi visitada ${visitData.count} vezes. A última visita foi: ${visitData.lastVisit}`;
+
+    const paragraph = document.createElement('p');
+    paragraph.textContent = footerText;
+
+    const footer = document.querySelector('footer');
+    footer.appendChild(paragraph);
   }
-  
-  function main() {
-    updatePageTitleAndHeader();
-    fetchCharacterData();
-    updateVisitCounter();
-    updateFooter();
-    openInNewTab();
-  }
-  
-  window.onload = main;  
+}
+
+function openInNewTab(url) {
+  const win = window.open(url, '_blank');
+  win.focus();
+}
+
+function main() {
+  updatePageTitleAndHeader();
+  fetchCharacterData();
+  updateVisitCounter();
+  updateFooter();
+}
+
+window.onload = main; 
