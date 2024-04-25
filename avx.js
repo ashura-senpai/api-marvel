@@ -6,35 +6,37 @@ function getPersonagemFromURL() {
 function updatePageTitleAndHeader() {
   const personagem = getPersonagemFromURL();
   if (personagem) {
-      document.title = `Página do ${personagem}`;
-      const h3Title = document.querySelector('#htres');
-      if (h3Title) {
-          h3Title.textContent = `Informações sobre ${personagem}`;
-      }
+    document.title = `Página do ${personagem}`;
+    const h3Title = document.querySelector('#htres');
+    if (h3Title) {
+      h3Title.textContent = `Informações sobre ${personagem}`;
+    }
   }
 }
 
 async function fetchCharacterData() {
   const personagem = getPersonagemFromURL();
   if (personagem) {
-      try {
-          const response = await fetch(`http://localhost:3000/herois?name=${personagem}`);
-          const data = await response.json();
-          const character = data[0]; //Assumindo que o endpoint /herois?name={nome} retorna uma lista com um único personagem
+    try {
+      const response = await fetch(`http://localhost:3000/herois?name=${personagem}`);
+      const data = await response.json();
+      const character = data[0];
 
-          const characterImage = character.thumbnail; //Ajuste conforme a estrutura do seu retorno
-          const characterImg = document.createElement('img');
-          characterImg.src = characterImage;
-          characterImg.alt = personagem;
-          characterImg.setAttribute('aria-label', `Imagem de ${personagem}`);
+      if (character && character.thumbnail) {
+        const characterImage = character.thumbnail.path + '.' + character.thumbnail.extension;
+        const characterImg = document.createElement('img');
+        characterImg.src = characterImage;
+        characterImg.alt = personagem;
+        characterImg.setAttribute('aria-label', `Imagem de ${personagem}`);
 
-          const characterImageSection = document.querySelector('#character-image');
-          if (characterImageSection) {
-              characterImageSection.appendChild(characterImg);
-          }
-      } catch (error) {
-          console.error('Erro ao obter imagem do personagem:', error);
+        const characterInfoDiv = document.querySelector('#character-info');
+        if (characterInfoDiv) {
+          characterInfoDiv.appendChild(characterImg);
+        }
       }
+    } catch (error) {
+      console.error('Erro ao obter imagem do personagem:', error);
+    }
   }
 }
 
