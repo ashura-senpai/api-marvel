@@ -1,2 +1,2 @@
 # api-marvel
-Repositório para a criação de uma API da MARVEL.
+Repositório para a criação do FRONT de uma API da MARVEL.
